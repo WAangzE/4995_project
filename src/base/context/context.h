@@ -8,6 +8,6 @@ public:
 
     
 
-}
+};
 
 } // namespace smuggler

@@ -1,6 +1,8 @@
 #pragma once
 #include "base/context/context.h"
 #include "engine/executor.h"
+#include <boost/property_tree/ptree.hpp>
+#include <memory>
 
 namespace smuggler {
 class SmugglerServiceHandler {
@@ -11,7 +13,7 @@ public:
     int serve();
 private:
     boost::property_tree::ptree& conf_;
-    std:;shared_pointer<Executor> exec_;
-}
+    std::shared_ptr<Executor<double>> exec_;
+};
 
 } // namespace smuggler

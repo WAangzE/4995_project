@@ -1,14 +1,15 @@
-#include <cstdio>
+#include <iostream>
 #include <gflags/gflags.h>
-#include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include "interface/smuggler_service_handler.h"
 
 
 using namespace smuggler;
 
 DEFINE_string(conf_file, "../conf/service.json", "config file");
 
-int main(int argc. char** argv) {
+int main(int argc, char** argv) {
 
     boost::property_tree::ptree conf;
     boost::property_tree::read_json(FLAGS_conf_file, conf);
@@ -23,6 +24,6 @@ int main(int argc. char** argv) {
         std::cout << "exception thrown! reason: unknown. \n";
     }
 
-    INFO("================= main() exit =================");
+//    INFO("================= main() exit =================");
     _exit(0);
 }

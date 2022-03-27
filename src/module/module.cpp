@@ -1,6 +1,5 @@
 #pragma once
-#include "utils/reflector.h"
-#include "base/context/context.h"
+#include "module.h"
 
 namespace smuggler {
 
@@ -12,9 +11,8 @@ ServiceModule::~ServiceModule(){
     std::cout << "~ServiceModule() \n";
 }
 
-void ServiceModule::exec(std::shared_pointer<Context> ctx){
+void ServiceModule::exec(std::shared_ptr<Context> ctx){
     std::cout << "exec ServiceModule() \n";
-    return 0;
 }
 
 }

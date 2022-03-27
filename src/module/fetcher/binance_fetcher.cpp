@@ -1,21 +1,10 @@
-#include "module/binance_fetcher.h"
+#include "module/fetcher/binance_fetcher.h"
 
 namespace smuggler {
-REFLECT(Allen);
 
-BinanceFetcher::BinanceFetcher()
-{
-	std::cout << "BinanceFetcher() \n";
-}
+BinanceFetcher::BinanceFetcher() { std::cout << "BinanceFetcher() \n"; }
 
+BinanceFetcher::~BinanceFetcher() { std::cout << "~BinanceFetcher() \n"; }
 
-BinanceFetcher::~BinanceFetcher()
-{
-	std::cout << "~BinanceFetcher() \n";
-}
-
-void BinanceFetcher::exec(std::shared_pointer<Context> ctx)
-{
-	std::cout << "exec BinanceFetcher \n";
-}
-}
+void BinanceFetcher::exec(std::shared_ptr<Context> ctx) { std::cout << "exec BinanceFetcher \n"; }
+}  // namespace smuggler
