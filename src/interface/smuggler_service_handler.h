@@ -3,6 +3,7 @@
 #include "engine/executor.h"
 #include <boost/property_tree/ptree.hpp>
 #include <memory>
+#include "module/module.h"
 
 namespace smuggler {
 class SmugglerServiceHandler {
@@ -13,7 +14,7 @@ public:
     int serve();
 private:
     boost::property_tree::ptree& conf_;
-    std::shared_ptr<Executor<double>> exec_;
+    std::shared_ptr<Executor<ServiceModule>> exec_;
 };
 
 } // namespace smuggler

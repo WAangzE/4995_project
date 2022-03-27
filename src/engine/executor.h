@@ -15,6 +15,4 @@ class Executor {
   std::vector<T*> taskflow_;
   std::shared_ptr<Context> ctx_;
 };
-template <typename T>
-Executor<T>::Executor(boost::property_tree::ptree& conf) {}
 }  // namespace smuggler
