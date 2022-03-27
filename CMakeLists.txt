@@ -5,6 +5,9 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS_RELEASE '-O3')
 
+# requirements
+find_package(gflags REQUIRED)
+
 include_directories(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(src/base)
 add_subdirectory(src/engine)
