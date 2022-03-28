@@ -2,8 +2,6 @@
 
 namespace smuggler {
 
-REFLECT(BinanceFetcher);
-
 BinanceFetcher::BinanceFetcher() { std::cout << "BinanceFetcher()" << std::endl; }
 
 BinanceFetcher::~BinanceFetcher() { std::cout << "~BinanceFetcher() \n"; }

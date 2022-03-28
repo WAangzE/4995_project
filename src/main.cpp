@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "interface/smuggler_service_handler.h"
+#include "register.h"
 
 using namespace smuggler;
 

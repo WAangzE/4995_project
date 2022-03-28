@@ -41,7 +41,7 @@ Reflector& reflector();
    public:                                                                                            \
     Register_##name() { reflector().registerFactory(#name, new ObjectFactory_##name()); }             \
   };                                                                                                  \
-  Register_##name register_##name;
+  Register_##name register_##name
 
 template <typename T>
 T* getNewInstance(const std::string& className) {
