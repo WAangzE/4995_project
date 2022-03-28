@@ -1,5 +1,3 @@
 #include "context.h"
 
-namespace smuggler {
-
-}
+namespace smuggler {}
