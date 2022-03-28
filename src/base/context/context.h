@@ -3,11 +3,8 @@
 namespace smuggler {
 
 struct Context {
-public:
-    Context() {}
-
-    
-
+ public:
+  Context() {}
 };
 
-} // namespace smuggler
+}  // namespace smuggler

@@ -1,6 +1,7 @@
 #pragma once
-#include "base/context/context.h"
 #include <boost/property_tree/ptree.hpp>
+
+#include "base/context/context.h"
 #include "module/module.h"
 
 namespace smuggler {
