@@ -19,11 +19,12 @@ add_subdirectory(src/utils)
 
 add_library(core STATIC
         $<TARGET_OBJECTS:base-obj>
-        $<TARGET_OBJECTS:engine-obj>
         $<TARGET_OBJECTS:interface-obj>
         $<TARGET_OBJECTS:module-obj>
         $<TARGET_OBJECTS:utils-obj>)
 
-add_executable(project_4995 src/main.cpp)
+add_executable(project_4995 
+                src/main.cpp 
+                src/module/fetcher/binance_fetcher.cpp)
 
 target_link_libraries(project_4995 core gflags)

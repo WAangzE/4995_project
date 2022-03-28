@@ -1,5 +1,5 @@
 #include "interface/smuggler_service_handler.h"
-
+#include "engine/executor.h"
 #include "module/module.h"
 #include "utils/reflector.h"
 
@@ -12,7 +12,7 @@ int SmugglerServiceHandler::serve() {
   exec_ = std::make_shared<Executor<ServiceModule>>(task_conf);
   while (true) {
     exec_->run();
-    sleep(500);
+    sleep(5);
   }
   return -1;
 }

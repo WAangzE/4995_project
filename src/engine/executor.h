@@ -1,6 +1,7 @@
 #pragma once
 #include "base/context/context.h"
 #include <boost/property_tree/ptree.hpp>
+#include "module/module.h"
 
 namespace smuggler {
 // to be develop: use concept
@@ -16,3 +17,5 @@ class Executor {
   std::shared_ptr<Context> ctx_;
 };
 }  // namespace smuggler
+
+#include "engine/executor.cpp"

@@ -1,5 +1,4 @@
 #include "engine/executor.h"
-
 #include <boost/property_tree/ptree.hpp>
 #include <module/module.h>
 #include <utils/reflector.h>
@@ -8,12 +7,12 @@ namespace smuggler {
 
 template <typename T>
 Executor<T>::Executor(boost::property_tree::ptree& conf) {
+  ctx_ = std::make_shared<Context>(); 
   for (auto it = conf.begin(); it!=conf.end();it++) {
     auto module_name = it->second.get_value<std::string>();
     T* module_e = getNewInstance<T>(module_name);
     taskflow_.push_back(module_e); 
   }
-  ctx_ = std::make_shared<Context>(); 
 }
 
 template <typename T>

@@ -1,12 +1,9 @@
 #include "utils/reflector.h"
 namespace smuggler {
 
-Reflector::Reflector()
-{
-}
+Reflector::Reflector() {}
 
-Reflector::~Reflector()
-{
+Reflector::~Reflector() {
 	std::map<std::string, ObjectFactory*>::iterator it = objectFactories.begin();
 	for (; it != objectFactories.end();++it)
 	{
@@ -19,7 +16,7 @@ void Reflector::registerFactory(const std::string& className, ObjectFactory *of)
 {
 	std::map<std::string, ObjectFactory*>::iterator it = objectFactories.find(className);
 	if (it != objectFactories.end()) {
-		std::cout << "Ѿڡ" << std::endl;
+		std::cout << "object already registered" << std::endl;
 	}
 	else {
 		objectFactories[className] = of;
