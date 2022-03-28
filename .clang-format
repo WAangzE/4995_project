@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 150
+DerivePointerAlignment: false
+PointerAlignment: Left
+Cpp11BracedListStyle: true
+IndentCaseLabels: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+SpaceAfterCStyleCast: true
+AlignAfterOpenBracket: Align

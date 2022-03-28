@@ -1,0 +1,10 @@
+{
+    "name": "smuggler_00001",
+    "interface": {
+        "smuggler": {
+            "flow": [
+                "BinanceFetcher"
+            ]
+        }
+    }
+}
