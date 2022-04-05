@@ -4,7 +4,7 @@
 #include "base/context/context.h"
 #include "utils/reflector.h"
 
-namespace smuggler {
+namespace burglar {
 
 class ServiceModule : public ReflectObject {
  public:

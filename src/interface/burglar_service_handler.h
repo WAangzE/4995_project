@@ -6,7 +6,7 @@
 #include "engine/executor.h"
 #include "module/module.h"
 
-namespace smuggler {
+namespace burglar {
 class SmugglerServiceHandler {
  public:
   SmugglerServiceHandler(boost::property_tree::ptree& conf);

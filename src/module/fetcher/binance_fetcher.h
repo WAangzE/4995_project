@@ -1,13 +1,19 @@
 #pragma once
 #include <memory>
+#include <utility>
 
 #include "module/module.h"
 
-namespace smuggler {
+namespace burglar {
 class BinanceFetcher : public ServiceModule {
  public:
   BinanceFetcher();
-  virtual ~BinanceFetcher();
-  virtual void exec(std::shared_ptr<Context> ctx);
+  explicit BinanceFetcher(std::string api) : api_(std::move(api)) {}
+
+  ~BinanceFetcher() override;
+  void exec(std::shared_ptr<Context> ctx) override;
+
+ protected:
+  std::string api_;
 };
-}  // namespace smuggler
+}  // namespace burglar
