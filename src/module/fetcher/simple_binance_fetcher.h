@@ -1,8 +1,8 @@
 #include <chrono>
 #include <utility>
 
-#include "binance_fetcher.h"
-#include "work_queue.h"
+#include "module/fetcher/binance_fetcher.h"
+#include "utils/work_queue.h"
 
 namespace burglar {
 class SimpleBinanceFetcher : public BinanceFetcher {

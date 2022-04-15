@@ -18,4 +18,4 @@ int SmugglerServiceHandler::serve() {
   return -1;
 }
 
-}  // namespace smuggler
+}  // namespace burglar

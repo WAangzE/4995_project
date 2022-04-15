@@ -17,6 +17,6 @@ class Executor {
   std::vector<T*> taskflow_;
   std::shared_ptr<Context> ctx_;
 };
-}  // namespace smuggler
+}  // namespace burglar
 
 #include "engine/executor.cpp"

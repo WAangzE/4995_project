@@ -48,4 +48,4 @@ T* getNewInstance(const std::string& className) {
   return dynamic_cast<T*>(reflector().getNewInstance(className));
 }
 
-}  // namespace smuggler
+}  // namespace burglar

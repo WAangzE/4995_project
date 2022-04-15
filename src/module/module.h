@@ -13,4 +13,4 @@ class ServiceModule : public ReflectObject {
   virtual void exec(std::shared_ptr<Context> ctx);
 };
 
-}  // namespace smuggler
+}  // namespace burglar

@@ -30,4 +30,4 @@ void Executor<T>::run() {
   }
 }
 
-}  // namespace smuggler
+}  // namespace burglar

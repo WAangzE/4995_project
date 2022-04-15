@@ -19,4 +19,4 @@ class SmugglerServiceHandler {
   std::shared_ptr<Executor<ServiceModule>> exec_;
 };
 
-}  // namespace smuggler
+}  // namespace burglar

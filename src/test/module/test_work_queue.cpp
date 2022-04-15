@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "gtest/gtest.h"
-#include "module/fetcher/work_queue.h"
+#include "utils/work_queue.h"
 
 TEST(WorkQueue, concurrent_op) {
   burglar::WorkQueue<int> work_queue;
@@ -45,7 +45,7 @@ TEST(WorkQueue, wait_till_not_full) {
   burglar::WorkQueue<int> work_queue(1);
   work_queue.push(1);
 
-  std::thread t1([&]{
+  std::thread t1([&] {
     sleep(1);
     std::cout << "ready to pop" << std::endl;
     work_queue.pop();

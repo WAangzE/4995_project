@@ -33,4 +33,4 @@ Reflector& reflector() {
   static Reflector reflector;
   return reflector;
 }
-}  // namespace smuggler
+}  // namespace burglar

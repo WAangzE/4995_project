@@ -7,4 +7,4 @@ struct Context {
   Context() {}
 };
 
-}  // namespace smuggler
+}  // namespace burglar
