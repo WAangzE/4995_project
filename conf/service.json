@@ -3,7 +3,7 @@
     "interface": {
         "smuggler": {
             "flow": [
-                "BinanceFetcher"
+                "SimpleBinanceFetcher"
             ]
         }
     }

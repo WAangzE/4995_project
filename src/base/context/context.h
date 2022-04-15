@@ -1,6 +1,6 @@
 #pragma once
 
-namespace smuggler {
+namespace burglar {
 
 struct Context {
  public:

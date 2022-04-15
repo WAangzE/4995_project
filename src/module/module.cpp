@@ -1,6 +1,6 @@
 #include "module/module.h"
 
-namespace smuggler {
+namespace burglar {
 
 ServiceModule::ServiceModule() { std::cout << "ServiceModule()" << std::endl; }
 

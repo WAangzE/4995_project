@@ -1,5 +1,5 @@
 #include "utils/reflector.h"
-namespace smuggler {
+namespace burglar {
 
 Reflector::Reflector() {}
 

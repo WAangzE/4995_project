@@ -1,6 +1,6 @@
 #include "module/fetcher/binance_fetcher.h"
 
-namespace smuggler {
+namespace burglar {
 
 BinanceFetcher::BinanceFetcher() { std::cout << "BinanceFetcher()" << std::endl; }
 

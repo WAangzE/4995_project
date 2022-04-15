@@ -1,10 +1,10 @@
-#include "interface/smuggler_service_handler.h"
+#include "interface/burglar_service_handler.h"
 
 #include "engine/executor.h"
 #include "module/module.h"
 #include "utils/reflector.h"
 
-namespace smuggler {
+namespace burglar {
 
 SmugglerServiceHandler::SmugglerServiceHandler(boost::property_tree::ptree& conf) : conf_(conf) {}
 

@@ -4,10 +4,10 @@
 #include <boost/property_tree/ptree.hpp>
 #include <iostream>
 
-#include "interface/smuggler_service_handler.h"
+#include "interface/burglar_service_handler.h"
 #include "register.h"
 
-using namespace smuggler;
+using namespace burglar;
 
 DEFINE_string(conf_file, "../conf/service.json", "config file");
 

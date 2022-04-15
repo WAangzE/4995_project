@@ -4,7 +4,7 @@
 #include "base/context/context.h"
 #include "module/module.h"
 
-namespace smuggler {
+namespace burglar {
 // to be develop: use concept
 template <typename T>
 class Executor {

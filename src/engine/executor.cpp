@@ -5,7 +5,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-namespace smuggler {
+namespace burglar {
 
 template <typename T>
 Executor<T>::Executor(boost::property_tree::ptree& conf) {

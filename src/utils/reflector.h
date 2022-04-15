@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-namespace smuggler {
+namespace burglar {
 
 class ReflectObject {
  public:

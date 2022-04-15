@@ -1,5 +1,5 @@
-#include "module/fetcher/binance_fetcher.h"
+#include "module/fetcher/simple_binance_fetcher.h"
 
-namespace smuggler {
+namespace burglar {
 REFLECT(BinanceFetcher);
 }
