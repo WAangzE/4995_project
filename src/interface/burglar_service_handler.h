@@ -7,10 +7,10 @@
 #include "module/module.h"
 
 namespace burglar {
-class SmugglerServiceHandler {
+class BurglarServiceHandler {
  public:
-  SmugglerServiceHandler(boost::property_tree::ptree& conf);
-  virtual ~SmugglerServiceHandler() = default;
+  BurglarServiceHandler(boost::property_tree::ptree& conf);
+  virtual ~BurglarServiceHandler() = default;
 
   int serve();
 

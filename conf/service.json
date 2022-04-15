@@ -1,7 +1,7 @@
 {
     "name": "smuggler_00001",
     "interface": {
-        "smuggler": {
+        "burglar": {
             "flow": [
                 "SimpleBinanceFetcher"
             ]

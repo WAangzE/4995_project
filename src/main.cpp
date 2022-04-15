@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
   std::cout << "================= main() start =================" << std::endl;
 
   try {
-    auto handler = std::make_shared<SmugglerServiceHandler>(conf);
+    auto handler = std::make_shared<BurglarServiceHandler>(conf);
     handler->serve();
   } catch (std::exception& ex) {
     std::cout << "exception thrown! reason: " << ex.what() << "\n";
