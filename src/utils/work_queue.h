@@ -1,3 +1,4 @@
+#pragma once
 #include <condition_variable>
 #include <mutex>
 #include <queue>
@@ -30,18 +31,28 @@ class WorkQueue {
     }
   }
 
-  const T& pop() {
+  void push(T&& item) {
+    std::unique_lock<std::mutex> lock(mutex_);
+    if (queue_.size() == capacity_)
+      full_cond_.wait(lock, [&] { return queue_.size() < capacity_; });
+    queue_.push(item);
+    if (queue_.size() == 1) {
+      empty_cond_.notify_one();
+    }
+  }
+
+  T pop() {
     std::unique_lock<std::mutex> lock(mutex_);
     if (queue_.empty())
       empty_cond_.wait(lock, [&] { return !queue_.empty(); });
-    const T& item = queue_.front();
+    T item = std::move(queue_.front());
     queue_.pop();
     if (queue_.size() == capacity_ - 1)
       full_cond_.notify_one();
     return item;
   }
 
-  const T& front() {
+  T& front() {
     std::unique_lock<std::mutex> lock(mutex_);
     if (queue_.empty())
       empty_cond_.wait(lock, [&] { return !queue_.empty(); });
