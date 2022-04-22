@@ -4,7 +4,14 @@
         "burglar": {
             "flow": [
                 "SimpleBinanceFetcher"
-            ]
+            ],
+            "dependency": {
+                "fetcher":["SimpleBinanceFetcher"],
+                "filter":[],
+                "strategy":[],
+                "tailer":[]
+            },
+            "thread_pool_num": 20
         }
     }
 }
