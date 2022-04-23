@@ -1,7 +1,7 @@
+#include "cpr/cpr.h"
 #include "gtest/gtest.h"
 #include "module/fetcher/simple_binance_fetcher.h"
 #include "utils/work_queue.h"
-#include "cpr/cpr.h"
 
 TEST(SimpleFetcher, basic) {
   try {
