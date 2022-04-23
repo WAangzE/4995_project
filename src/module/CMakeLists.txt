@@ -1,6 +1,7 @@
 FILE(GLOB module-sources
         fetcher/binance_fetcher.cpp
         fetcher/simple_binance_fetcher.cpp
+        filter/filter.cpp
         module.cpp)
 
 add_library(module-obj ${module-sources})
