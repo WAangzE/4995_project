@@ -5,7 +5,7 @@
 namespace burglar {
 
 void SimpleBinanceFetcher::exec(std::shared_ptr<Context> ctx) {
-  std::cout << work_queue_->pop() << std::endl;
+  ctx->binance_data_.raw_content_ = work_queue_->pop();
 }
 
 void SimpleBinanceFetcher::start() {

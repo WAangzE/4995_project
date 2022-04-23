@@ -3,6 +3,7 @@ FILE(GLOB module-sources
         fetcher/simple_binance_fetcher.cpp
         strategyer/basic_strategyer.cpp
         strategyer/iceberg_buy_strategyer.cpp
+        filter/filter.cpp
         module.cpp)
 
 add_library(module-obj ${module-sources})

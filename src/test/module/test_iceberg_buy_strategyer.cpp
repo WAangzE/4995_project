@@ -6,10 +6,10 @@ TEST(SimpleStrategyer, basic) {
   try {
     const int initBalance = 100;
     const int numOfPrice = 10;
-    const int averagePrice = 0.12;
+    const double averagePrice = 0.12;
     burglar::IcebergBuyStrategyer strategyer{};
     auto ctx = std::make_shared<burglar::Context>();
-    ctx->setBalance(initBalance);
+    ctx->user_state_.balance_ = initBalance;
     EXPECT_EQ(0,strategyer.getNumOfPrice());
     EXPECT_EQ(0,strategyer.getAveragePrice());
     
@@ -21,11 +21,37 @@ TEST(SimpleStrategyer, basic) {
     hisPrice = {0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12};
 
     for (int i = 0; i< numOfPrice; i++){
-      if(i<5) {
-        strategyer.updateWithNewPrice(averagePrice + i*0.01);
+      double newPrice{};
+      if(i<numOfPrice/2) {
+        newPrice = averagePrice + i*0.01;
       } else {
-        strategyer.updateWithNewPrice(averagePrice - i*0.01);
+        newPrice = averagePrice - i*0.01;
       }
+      strategyer.updateWithNewPrice(newPrice);
+      ctx->binance_data_.last_price_ = newPrice;
+      strategyer.exec(ctx);
+    }
+    
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+}
+
+TEST(SimpleStrategyer, noEnoughRecord) {
+  try {
+    const int initBalance = 100;
+    const int numOfPrice = 10;
+    burglar::IcebergBuyStrategyer strategyer{};
+    auto ctx = std::make_shared<burglar::Context>();
+    ctx->user_state_.balance_ = initBalance;
+    EXPECT_EQ(0,strategyer.getNumOfPrice());
+    EXPECT_EQ(0,strategyer.getAveragePrice());
+
+    auto& hisPrice = strategyer.getHistoryPrice();
+    for (int i = 0; i< numOfPrice; i++){
+      double newPrice = 0.12;
+      strategyer.updateWithNewPrice(newPrice);
+      ctx->binance_data_.last_price_ = newPrice;
       strategyer.exec(ctx);
     }
     

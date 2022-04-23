@@ -16,7 +16,8 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
         std::cout<< "no enough records...\n";
         return;
     }
-    double currentPrice = 1.5;
+    double currentPrice = ctx->binance_data_.last_price_;
+    std::cout<< "current price " << currentPrice << "\n";
     double currentOwn = 100.0;
     std::cout << std::setprecision(4) << std::fixed;
     if (currentPrice>averagePrice) {
