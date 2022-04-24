@@ -1,13 +1,13 @@
 #include "cpr/cpr.h"
 #include "gtest/gtest.h"
-#include "module/strategyer/iceberg_buy_strategyer.h"
+#include "module/strategyer/billionaire_strategyer.h"
 
-TEST(IcebergStrategyer, basic) {
+TEST(BillionaireStrategyer, basic) {
   try {
     const int initBalance = 100;
     const int numOfPrice = 10;
     const double averagePrice = 0.12;
-    burglar::IcebergBuyStrategyer strategyer{};
+    burglar::BillionaireStrategyer strategyer{};
     auto ctx = std::make_shared<burglar::Context>();
     ctx->user_state_.balance_ = initBalance;
     EXPECT_EQ(0, strategyer.getNumOfPrice());
@@ -37,11 +37,11 @@ TEST(IcebergStrategyer, basic) {
   }
 }
 
-TEST(IcebergStrategyer, noEnoughRecord) {
+TEST(BillionaireStrategyer, noEnoughRecord) {
   try {
     const int initBalance = 100;
     const int numOfPrice = 10;
-    burglar::IcebergBuyStrategyer strategyer{};
+    burglar::BillionaireStrategyer strategyer{};
     auto ctx = std::make_shared<burglar::Context>();
     ctx->user_state_.balance_ = initBalance;
     EXPECT_EQ(0, strategyer.getNumOfPrice());

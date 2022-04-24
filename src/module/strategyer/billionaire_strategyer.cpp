@@ -1,4 +1,4 @@
-#include "module/strategyer/iceberg_buy_strategyer.h"
+#include "module/strategyer/billionaire_strategyer.h"
 
 #include "cpr/cpr.h"
 #include "strategyer_utils.h"
@@ -7,9 +7,7 @@ const int MINIMUM_NUM_PRICE = 2;
 
 namespace burglar {
 
-void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
-  // strategy
-  // std::cout<< "currentBalance is " << ctx->getBalance() << std::endl;
+void BillionaireStrategyer::exec(std::shared_ptr<Context> ctx) {
   double currentPrice = ctx->binance_data_.last_price_;
   double currentOwn = 100.0;
   updateWithNewPrice(currentPrice);
@@ -31,7 +29,7 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
   //tuple (string,double,double) (op, unit, price)
 }
 
-int IcebergBuyStrategyer::init(const boost::property_tree::ptree& p) {
+int BillionaireStrategyer::init(const boost::property_tree::ptree& p) {
   return 0;
 }
 
