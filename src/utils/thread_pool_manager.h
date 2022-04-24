@@ -46,7 +46,6 @@ class ThreadPoolManager {
    public:
     ThreadWorker(ThreadPoolManager* pool, const int id) : pool_(pool), id_(id) {}
     void operator()() {
-      std::function<void()> func;
       while (!pool_->shut_down_) {
         auto func = pool_->work_queue_->pop();
         func();

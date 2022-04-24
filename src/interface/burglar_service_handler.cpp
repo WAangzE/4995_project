@@ -9,7 +9,7 @@ namespace burglar {
 BurglarServiceHandler::BurglarServiceHandler(boost::property_tree::ptree& conf) : conf_(conf) {}
 
 int BurglarServiceHandler::serve() {
-  auto task_conf = conf_.get_child("interface").get_child("burglar").get_child("flow");
+  auto task_conf = conf_.get_child("interface").get_child("burglar");
   exec_ = std::make_shared<Executor<ServiceModule>>(task_conf);
   while (true) {
     exec_->run();

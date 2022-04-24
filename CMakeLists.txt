@@ -31,6 +31,6 @@ add_library(core STATIC
 
 add_executable(burglar
         src/main.cpp)
-target_link_libraries(burglar core gflags)
+target_link_libraries(burglar core gflags cpr::cpr)
 
 add_subdirectory(src/test)

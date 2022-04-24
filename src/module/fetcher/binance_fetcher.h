@@ -8,7 +8,6 @@ namespace burglar {
 class BinanceFetcher : public ServiceModule {
  public:
   BinanceFetcher();
-  explicit BinanceFetcher(std::string api) : api_(std::move(api)) {}
 
   ~BinanceFetcher() override;
   void exec(std::shared_ptr<Context> ctx) override;

@@ -3,8 +3,16 @@
     "interface": {
         "burglar": {
             "flow": [
-                "SimpleBinanceFetcher"
-            ]
+                "SimpleBinanceFetcher",
+                "SimplePriceFilter"
+            ],
+            "dependency": {
+                "fetcher":["SimpleBinanceFetcher"],
+                "filter":["SimplePriceFilter"],
+                "strategy":[],
+                "tailer":[]
+            },
+            "thread_pool_num": 20
         }
     }
 }

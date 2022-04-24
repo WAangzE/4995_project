@@ -7,13 +7,9 @@
 namespace burglar {
 class SimpleBinanceFetcher : public BinanceFetcher {
  public:
-  SimpleBinanceFetcher() = delete;
-  explicit SimpleBinanceFetcher(std::string api)
-      : BinanceFetcher(std::move(api)), interval_(std::chrono::seconds(5)), stop_(false) {
-    work_queue_ = std::make_unique<WorkQueue<std::string>>();
-    start();
-  }
+  SimpleBinanceFetcher() = default;
 
+  int init(const boost::property_tree::ptree&) override;
   void exec(std::shared_ptr<Context> ctx) override;
 
   ~SimpleBinanceFetcher() override {
@@ -23,9 +19,9 @@ class SimpleBinanceFetcher : public BinanceFetcher {
 
  private:
   std::unique_ptr<WorkQueue<std::string>> work_queue_;
-  std::chrono::seconds interval_;
+  std::chrono::seconds interval_{};
   std::unique_ptr<std::thread> fetch_thread_;
-  bool stop_;
+  bool stop_ = false;
 
   void start();
 };

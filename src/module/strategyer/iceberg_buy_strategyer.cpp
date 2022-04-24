@@ -28,4 +28,8 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
   }
 }
 
+int IcebergBuyStrategyer::init(const boost::property_tree::ptree& p) {
+  return 0;
+}
+
 }  // namespace burglar

@@ -10,6 +10,7 @@ class BasicStrategyer : public ServiceModule {
   BasicStrategyer();
   ~BasicStrategyer();
   void exec(std::shared_ptr<Context> ctx) override;
+  int init(const boost::property_tree::ptree& p) override;
 
  protected:
   std::string api_;

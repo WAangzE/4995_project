@@ -14,6 +14,7 @@ class IcebergBuyStrategyer : public BasicStrategyer {
             // start
         };
   void exec(std::shared_ptr<Context> ctx) override;
+  int init(const boost::property_tree::ptree& p) override;
   int getNumOfPrice() const { return numOfPrice; }
   void setNumOfPrice(int num) { numOfPrice = num; }
   double getAveragePrice() const { return averagePrice; }
