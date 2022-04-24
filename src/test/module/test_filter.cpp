@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
-#include "module/filter/filter.h"
+#include "module/filter/simple_price_filter.h"
 #include "module/fetcher/simple_binance_fetcher.h"
-#include "third_party/json.hpp"
 
 using namespace burglar;
 using namespace nlohmann;
@@ -12,7 +11,7 @@ TEST(Filter, basic) {
   fetcher.exec(ctx);
 //  std::cout << ctx->binance_data_.raw_content_ << std::endl;
 
-  Filter filter;
+  SimplePriceFilter filter;
   filter.exec(ctx);
 
 //  json j = json::parse(ctx->binance_data_.raw_content_);

@@ -3,11 +3,12 @@
     "interface": {
         "burglar": {
             "flow": [
-                "SimpleBinanceFetcher"
+                "SimpleBinanceFetcher",
+                "SimplePriceFilter"
             ],
             "dependency": {
                 "fetcher":["SimpleBinanceFetcher"],
-                "filter":[],
+                "filter":["SimplePriceFilter"],
                 "strategy":[],
                 "tailer":[]
             },

@@ -12,13 +12,14 @@ namespace burglar {
 
 template <typename T>
 Executor<T>::Executor(boost::property_tree::ptree& conf) {
-  ctx_ = std::make_shared<Context>();
+  ctx_ = std::make_shared<Context>(conf);
   int thread_pool_num = conf.get_child("thread_pool_num").get_value<int>();
   thread_pool_ = std::make_shared<ThreadPoolManager>(thread_pool_num);
   auto flow = conf.get_child("flow");
   for (auto it = flow.begin(); it != flow.end(); it++) {
     auto module_name = it->second.get_value<std::string>();
     T* module_e = getNewInstance<T>(module_name);
+    module_e->init(conf);
     taskflow_[module_name] = module_e;
   }
   g_ = std::vector<std::vector<std::string>>(4, std::vector<std::string>());
@@ -34,10 +35,10 @@ void Executor<T>::dag_builder(boost::property_tree::ptree& conf) {
   for (auto& it : fetcher) {
     g_[0].push_back(it.second.get_value<std::string>());
   }
-  for (auto& it : fetcher) {
+  for (auto& it : filter) {
     g_[1].push_back(it.second.get_value<std::string>());
   }
-  for (auto& it : filter) {
+  for (auto& it : strategy) {
     g_[2].push_back(it.second.get_value<std::string>());
   }
   for (auto& it : tailer) {
@@ -55,16 +56,19 @@ template <typename T>
 void Executor<T>::run() {
   std::unordered_set<std::future<void>*> ft;
   for (int i = 0; i < 4; i++) {
-    int node_num = g_[i].size();
     for (auto& module_name : g_[i]) {
-      auto job = thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); });
-      ft.insert(&job);
+      taskflow_[module_name]->exec(ctx_);
     }
-    for (auto& t : ft) {
-      t->wait();
-      delete t;
-    }
-    ft.clear();
+//    int node_num = g_[i].size();
+//    for (auto& module_name : g_[i]) {
+//      auto job = thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); });
+//      ft.insert(&job);
+//    }
+//    for (auto& t : ft) {
+//      t->wait();
+//      delete t;
+//    }
+//    ft.clear();
   }
 }
 

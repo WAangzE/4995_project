@@ -17,7 +17,7 @@ class WorkQueue {
   explicit WorkQueue(int capacity) { capacity_ = capacity; }
 
   int size() {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::scoped_lock<std::mutex> lock(mutex_);
     return queue_.size();
   }
 

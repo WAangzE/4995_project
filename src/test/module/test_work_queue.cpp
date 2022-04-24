@@ -59,6 +59,7 @@ TEST(WorkQueue, wait_till_not_full) {
 
 TEST(WorkQueue, wait_till_not_empty) {
   burglar::WorkQueue<int> work_queue;
+  work_queue.pop();
 
   std::thread t1([&] {
     sleep(1);

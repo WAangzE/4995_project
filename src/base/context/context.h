@@ -2,14 +2,16 @@
 #include <chrono>
 #include <sstream>
 #include <string>
+#include <boost/property_tree/ptree.hpp>
 
 namespace burglar {
 
 struct Context {
   Context() = default;
+  explicit Context(const boost::property_tree::ptree& conf): conf_(conf) {}
 
   struct UserState {
-    double balance_;
+    double balance_{};
   } user_state_;
 
   struct BinanceData {
@@ -35,6 +37,9 @@ struct Context {
        << "  count: " << binance_data_.count_ << "\n";
     return ss.str();
   }
+
+ private:
+  boost::property_tree::ptree conf_;
 };
 
 }  // namespace burglar
