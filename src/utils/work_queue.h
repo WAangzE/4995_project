@@ -21,6 +21,11 @@ class WorkQueue {
     return queue_.size();
   }
 
+  bool empty() {
+    std::scoped_lock<std::mutex> lock(mutex_);
+    return queue_.empty();
+  }
+
   void push(const T& item) {
     std::unique_lock<std::mutex> lock(mutex_);
     if (queue_.size() == capacity_)

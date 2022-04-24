@@ -6,7 +6,7 @@ using namespace burglar;
 using namespace nlohmann;
 
 TEST(Filter, basic) {
-  SimpleBinanceFetcher fetcher("https://www.binance.com/api/v3/ticker/24hr");
+  SimpleBinanceFetcher fetcher;
   auto ctx = std::make_shared<Context>();
   fetcher.exec(ctx);
 //  std::cout << ctx->binance_data_.raw_content_ << std::endl;

@@ -5,7 +5,7 @@
 
 TEST(SimpleFetcher, basic) {
   try {
-    burglar::SimpleBinanceFetcher fetcher("https://www.binance.com/api/v3/ticker/24hr");
+    burglar::SimpleBinanceFetcher fetcher;
     auto ctx = std::make_shared<burglar::Context>();
     fetcher.exec(ctx);
     std::cout << ctx->binance_data_.raw_content_ << std::endl;

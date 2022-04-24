@@ -54,19 +54,18 @@ Executor<T>::~Executor() {
 
 template <typename T>
 void Executor<T>::run() {
-  std::unordered_set<std::future<void>*> ft;
+  std::unordered_set<std::shared_ptr<std::future<void>>> ft;
   for (int i = 0; i < 4; i++) {
     for (auto& module_name : g_[i]) {
       taskflow_[module_name]->exec(ctx_);
     }
-//    int node_num = g_[i].size();
-//    for (auto& module_name : g_[i]) {
-//      auto job = thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); });
-//      ft.insert(&job);
+    //    for (auto& module_name : g_[i]) {
+//      auto job = std::make_shared<std::future<void>>(
+//          thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); }));
+//      ft.insert(job);
 //    }
 //    for (auto& t : ft) {
 //      t->wait();
-//      delete t;
 //    }
 //    ft.clear();
   }

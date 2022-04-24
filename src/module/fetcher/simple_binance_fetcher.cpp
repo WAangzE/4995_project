@@ -19,6 +19,7 @@ int SimpleBinanceFetcher::init(const boost::property_tree::ptree& conf) {
 }
 
 void SimpleBinanceFetcher::exec(std::shared_ptr<Context> ctx) {
+  std::cout << "ok" << std::endl;
   ctx->binance_data_.raw_content_ = work_queue_->pop();
 }
 
