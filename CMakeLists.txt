@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 project(burglar VERSION 1.0.0)
 
 set(CMAKE_BUILD_TYPE Debug)
@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS_RELEASE '-O3')
 
 # requirements
 find_package(gflags REQUIRED)
-find_package(Boost 1.74 COMPONENTS program_options REQUIRED)
+find_package(Boost 1.71 COMPONENTS program_options REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 
 # add cpr library for http requests
