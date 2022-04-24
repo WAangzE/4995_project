@@ -8,8 +8,6 @@ const int MINIMUM_NUM_PRICE = 2;
 namespace burglar {
 
 void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
-  // strategy
-  // std::cout<< "currentBalance is " << ctx->getBalance() << std::endl;
   double currentPrice = ctx->binance_data_.last_price_;
   double currentOwn = 100.0;
   updateWithNewPrice(currentPrice);
@@ -17,18 +15,30 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
     std::cout << "no enough records...\n";
     return;
   }
-  
+
   std::cout << std::setprecision(4) << std::fixed;
+  Action::Op op;
+  double unit;
+  double price;
+
   if (currentPrice > averagePrice) {
-    std::cout << "Buy " << strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice)
-              << " Units with Price " << strategyer_utils::getBuyPrice(currentOwn, currentPrice, averagePrice)
-              << "\n";
+    op = Action::Op::buy;
+    unit = strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice);
+    price = strategyer_utils::getBuyPrice(currentOwn, currentPrice, averagePrice);
+    std::cout << "Buy " << unit << " Units with Price " << price << "\n";
   } else {
-    std::cout << "Sell " << strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice)
-              << " Units with Price "
-              << strategyer_utils::getSellPrice(currentOwn, currentPrice, averagePrice) << "\n";
+    op = Action::Op::sell;
+    unit = strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice);
+    price = strategyer_utils::getSellPrice(currentOwn, currentPrice, averagePrice);
+    std::cout << "Sell " << unit << " Units with Price " << price << "\n";
   }
-  //tuple (string,double,double) (op, unit, price)
+
+  Action action;
+  action.op_ = op;
+  action.unit = unit;
+  action.price = price;
+
+  ctx->strategy_actions_->push(action);
 }
 
 int IcebergBuyStrategyer::init(const boost::property_tree::ptree& p) {

@@ -6,13 +6,14 @@
                 "SimpleBinanceFetcher",
                 "SimplePriceFilter",
                 "IcebergBuyStrategyer",
-                "BillionaireStrategyer"
+                "BillionaireStrategyer",
+                "SimplePriceTailer"
             ],
             "dependency": {
                 "fetcher":["SimpleBinanceFetcher"],
                 "filter":["SimplePriceFilter"],
                 "strategy":["IcebergBuyStrategyer","BillionaireStrategyer"],
-                "tailer":[]
+                "tailer":["SimplePriceTailer"]
             },
             "thread_pool_num": 20
         }
