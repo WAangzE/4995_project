@@ -58,47 +58,57 @@ requires isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_valu
 template <typename InContainer, typename Mapper, typename OutContainer, typename P>
 requires std::predicate<P, std::iter_value_t<ranges::iterator_t<InContainer>>>&&
     isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_value_t<OutContainer>>&&
-        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> void
+        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> int
         filterMapperConditionalIn(InContainer cIn, Mapper mapper, OutContainer cOut, P f) {
+  int counter{0};
   auto itO = cOut.begin();
   for (auto itI = cIn.begin(); itI != cIn.end(); itI++) {
     if (f(*itI)) {
       *itO = mapper(*itI);
       itO++;
+      counter++;
     }
   }
+  return counter;
 }
 
 template <typename InContainer, typename Mapper, typename OutContainer, typename P>
 requires std::predicate<P, std::iter_value_t<ranges::iterator_t<OutContainer>>>&&
     isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_value_t<OutContainer>>&&
-        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> void
+        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> int
         filterMapperConditionalOut(InContainer cIn, Mapper mapper, OutContainer cOut, P f) {
+  int counter{0};
   auto itO = cOut.begin();
   for (auto itI = cIn.begin(); itI != cIn.end(); itI++) {
     auto out = mapper(*itI);
     if (f(out)) {
       *itO = out;
       itO++;
+      counter++;
     }
   }
+  return counter;
 }
 
 template <typename Container>
-concept validFilteringContainer = ranges::forward_range<Container> && equality_comparable<ranges::iterator_t<Container>> && copyable<ranges::range_value_t<Container>>
-    && copy_constructible<ranges::iterator_t<Container>> && sentinel_for<ranges::sentinel_t<Container>, ranges::iterator_t<Container>>;
+concept validFilteringContainer =
+    ranges::forward_range<Container>&& equality_comparable<ranges::iterator_t<Container>>&&
+        copyable<ranges::range_value_t<Container>>&& copy_constructible<ranges::iterator_t<Container>>&&
+            sentinel_for<ranges::sentinel_t<Container>, ranges::iterator_t<Container>>;
 
 template <typename Container, typename P>
-requires validFilteringContainer<Container>
-                void filterBasic(Container c, P f) {
-                    auto cur = c.begin();
+requires validFilteringContainer<Container> int filterBasic(Container c, P f) {
+  int counter{0};
+  auto cur = c.begin();
   for (auto it = c.begin(); it != c.end(); it++) {
-      auto tmp = *it;
-      if(f(tmp)) {
-          *cur = tmp;
-          cur++;
-      }
+    auto tmp = *it;
+    if (f(tmp)) {
+      *cur = tmp;
+      cur++;
+      counter++;
+    }
   }
+  return counter
 }
 
 }  // namespace filter_utils
