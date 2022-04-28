@@ -2,9 +2,9 @@
 
 namespace burglar {
 
-BinanceFetcher::BinanceFetcher() { std::cout << "BinanceFetcher()" << std::endl; }
+BinanceFetcher::BinanceFetcher() {}
 
-BinanceFetcher::~BinanceFetcher() { std::cout << "~BinanceFetcher() \n"; }
+BinanceFetcher::~BinanceFetcher() {}
 
-void BinanceFetcher::exec(std::shared_ptr<Context> ctx) { std::cout << "exec BinanceFetcher \n"; }
+void BinanceFetcher::exec(std::shared_ptr<Context> ctx) {}
 }  // namespace burglar

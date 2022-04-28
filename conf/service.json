@@ -15,7 +15,8 @@
                 "strategy":["IcebergBuyStrategyer","BillionaireStrategyer"],
                 "tailer":["SimplePriceTailer"]
             },
-            "thread_pool_num": 20
+            "thread_pool_num": 20,
+            "fetch_interval": 5
         }
     }
 }

@@ -16,6 +16,10 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
     return;
   }
 
+  // FIXME
+  // As we're simulating CPU-heavy workloads, we just randomly sleep for a short time
+  strategyer_utils::fake_sleep();
+
   std::cout << std::setprecision(4) << std::fixed;
   Action::Op op;
   double unit;

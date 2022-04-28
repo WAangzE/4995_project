@@ -2,11 +2,11 @@
 
 namespace burglar {
 
-BasicStrategyer::BasicStrategyer() { std::cout << "BasicStrategyer()" << std::endl; }
+BasicStrategyer::BasicStrategyer() {}
 
-BasicStrategyer::~BasicStrategyer() { std::cout << "~BasicStrategyer() \n"; }
+BasicStrategyer::~BasicStrategyer() {}
 
-void BasicStrategyer::exec(std::shared_ptr<Context> ctx) { std::cout << "exec BasicStrategyer \n"; }
+void BasicStrategyer::exec(std::shared_ptr<Context> ctx) {}
 
 int BasicStrategyer::init(const boost::property_tree::ptree& p) { return 0; }
 }  // namespace burglar

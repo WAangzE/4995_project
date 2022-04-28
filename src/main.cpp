@@ -17,8 +17,6 @@ int main(int argc, char** argv) {
   boost::property_tree::ptree conf;
   boost::property_tree::read_json(FLAGS_conf_file, conf);
 
-  std::cout << "================= main() start =================" << std::endl;
-
   try {
     auto handler = std::make_shared<BurglarServiceHandler>(conf);
     handler->serve();
