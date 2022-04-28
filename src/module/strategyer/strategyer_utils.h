@@ -1,6 +1,6 @@
 #pragma once
-#include <random>
 #include <iostream>
+#include <random>
 
 namespace strategyer_utils {
 void dummy();

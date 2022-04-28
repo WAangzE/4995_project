@@ -38,4 +38,4 @@ double getSellPrice(double currentOwn, double currentPrice, double averagePrice)
   return (1 + weighted * (entropy - 0.5)) * currentPrice;
 }
 
-}
+}  // namespace strategyer_utils

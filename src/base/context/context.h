@@ -25,9 +25,7 @@ struct Context {
   struct UserState {
     double balance_{};
 
-    void reset() {
-      balance_ = 0.0;
-    }
+    void reset() { balance_ = 0.0; }
   } user_state_;
 
   struct BinanceData {

@@ -27,10 +27,78 @@ requires std::predicate<P, std::iter_value_t<ranges::iterator_t<Container>>>&&
                 sentinel_for<ranges::sentinel_t<Container>, ranges::iterator_t<Container>>
                     Accumulator filterAccerConditional(Container c, Operation op, Accumulator acc, P f) {
   for (auto it = c.begin(); it != c.end(); it++) {
-    if(f(*it))
-        acc = op(acc, *it);
+    if (f(*it))
+      acc = op(acc, *it);
   }
   return acc;
+}
+
+template <typename Mapper, typename Element, typename OutputT>
+concept isMapper = requires(Mapper mapper, Element e1) {
+  { mapper(e1) }
+  ->same_as<OutputT>;
+};
+
+template <typename Container>
+concept validMappingContainer =
+    ranges::forward_range<Container>&& equality_comparable<ranges::iterator_t<Container>>&&
+        copyable<ranges::range_value_t<Container>>&& copy_constructible<ranges::iterator_t<Container>>&&
+            sentinel_for<ranges::sentinel_t<Container>, ranges::iterator_t<Container>>;
+
+template <typename InContainer, typename Mapper, typename OutContainer>
+requires isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_value_t<OutContainer>>&&
+    validMappingContainer<InContainer>&& validMappingContainer<OutContainer> void
+    filterMapper(InContainer cIn, Mapper mapper, OutContainer cOut) {
+  auto itO = cOut.begin();
+  for (auto itI = cIn.begin(); itI != cIn.end(); itI++, itO++) {
+    *itO = mapper(*itI);
+  }
+}
+
+template <typename InContainer, typename Mapper, typename OutContainer, typename P>
+requires std::predicate<P, std::iter_value_t<ranges::iterator_t<InContainer>>>&&
+    isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_value_t<OutContainer>>&&
+        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> void
+        filterMapperConditionalIn(InContainer cIn, Mapper mapper, OutContainer cOut, P f) {
+  auto itO = cOut.begin();
+  for (auto itI = cIn.begin(); itI != cIn.end(); itI++) {
+    if (f(*itI)) {
+      *itO = mapper(*itI);
+      itO++;
+    }
+  }
+}
+
+template <typename InContainer, typename Mapper, typename OutContainer, typename P>
+requires std::predicate<P, std::iter_value_t<ranges::iterator_t<OutContainer>>>&&
+    isMapper<Mapper, ranges::range_value_t<InContainer>, ranges::range_value_t<OutContainer>>&&
+        validMappingContainer<InContainer>&& validMappingContainer<OutContainer> void
+        filterMapperConditionalOut(InContainer cIn, Mapper mapper, OutContainer cOut, P f) {
+  auto itO = cOut.begin();
+  for (auto itI = cIn.begin(); itI != cIn.end(); itI++) {
+    auto out = mapper(*itI);
+    if (f(out)) {
+      *itO = out;
+      itO++;
+    }
+  }
+}
+
+template <typename Container>
+concept validFilteringContainer = ranges::forward_range<Container> && equality_comparable<ranges::iterator_t<Container>> && copyable<ranges::range_value_t<Container>>
+    && copy_constructible<ranges::iterator_t<Container>> && sentinel_for<ranges::sentinel_t<Container>, ranges::iterator_t<Container>>;
+
+template <typename Container, typename P>
+requires validFilteringContainer<Container>
+                void filterBasic(Container c, P f) {
+                    auto cur = c.begin();
+  for (auto it = c.begin(); it != c.end(); it++) {
+      auto tmp = *it;
+      if(f(tmp)) {
+          *cur = tmp;
+          cur++;
+      }
+  }
 }
 
 }  // namespace filter_utils

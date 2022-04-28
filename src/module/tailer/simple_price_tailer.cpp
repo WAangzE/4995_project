@@ -38,8 +38,10 @@ void SimplePriceTailer::exec(std::shared_ptr<Context> ctx) {
     ctx->decision_.unit = unit_decided;
     ctx->decision_.price = price_decided;
 
-    std::cout << "decision is made:\n" << "  op is: " << int(op_decided) << '\n' <<
-        "  unit is: " << unit_decided << '\n' << "  price is: " << price_decided << std::endl;
+    std::cout << "decision is made:\n"
+              << "  op is: " << int(op_decided) << '\n'
+              << "  unit is: " << unit_decided << '\n'
+              << "  price is: " << price_decided << std::endl;
   }
   std::cout << "no enough action data, skip..." << std::endl;
 }

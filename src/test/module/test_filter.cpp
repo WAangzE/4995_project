@@ -1,11 +1,11 @@
 #include "gtest/gtest.h"
-#include "module/filter/simple_price_filter.h"
 #include "module/fetcher/simple_binance_fetcher.h"
+#include "module/filter/simple_price_filter.h"
 
 using namespace burglar;
 using namespace nlohmann;
 
-//TEST(Filter, basic) {
+// TEST(Filter, basic) {
 //  SimpleBinanceFetcher fetcher;
 //  auto ctx = std::make_shared<Context>();
 //  fetcher.exec(ctx);

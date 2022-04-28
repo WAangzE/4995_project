@@ -3,7 +3,7 @@
 #include "module/fetcher/simple_binance_fetcher.h"
 #include "utils/work_queue.h"
 
-//TEST(SimpleFetcher, basic) {
+// TEST(SimpleFetcher, basic) {
 //<<<<<<< HEAD
 //  try {
 //    burglar::SimpleBinanceFetcher fetcher;

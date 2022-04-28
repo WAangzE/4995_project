@@ -11,8 +11,5 @@ class SimplePriceTailer : public ServiceModule {
 
  private:
   boost::property_tree::ptree conf_;
-
 };
-}
-
-
+}  // namespace burglar

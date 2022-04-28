@@ -13,8 +13,6 @@ class SimplePriceFilter : public ServiceModule {
   void exec(std::shared_ptr<Context> ctx) override;
 
  private:
-
 };
 
-
-}
+}  // namespace burglar
