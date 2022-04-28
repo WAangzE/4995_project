@@ -59,3 +59,32 @@ TEST(BillionaireStrategyer, noEnoughRecord) {
     std::cout << e.what() << std::endl;
   }
 }
+
+TEST(BillionaireStrategyer, Unconsistent) {
+  try {
+    const int initBalance = 100;
+    const int numOfPrice = 10;
+    const int balanceBar = 0.7;
+    const double tune = 0.02;
+    burglar::BillionaireStrategyer strategyer{};
+    auto ctx = std::make_shared<burglar::Context>();
+    ctx->user_state_.balance_ = initBalance;
+    EXPECT_EQ(0, strategyer.getNumOfPrice());
+    EXPECT_EQ(0, strategyer.getAveragePrice());
+
+    auto& hisPrice = strategyer.getHistoryPrice();
+    for (int i = 0; i < numOfPrice; i++) {
+      double newPrice = 0.12;
+      if (ctx->user_state_.balance_ > balanceBar * initBalance)
+        newPrice *= 1 + tune;
+      else
+        newPrice *= 1 - tune;
+      strategyer.updateWithNewPrice(newPrice);
+      ctx->binance_data_.last_price_ = newPrice;
+      strategyer.exec(ctx);
+    }
+
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+}

@@ -3,7 +3,6 @@
 #include <random>
 
 namespace strategyer_utils {
-void dummy();
 
 double getAmount(double currentOwn, double currentPrice, double averagePrice);
 
