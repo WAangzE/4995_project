@@ -9,3 +9,4 @@ else ()
 endif ()
 
 add_subdirectory(module)
+add_subdirectory(experiments)

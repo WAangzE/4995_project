@@ -5,6 +5,7 @@
 #include <string>
 
 #include "utils/work_queue.h"
+#include "third_party/json.hpp"
 
 namespace burglar {
 
@@ -18,7 +19,7 @@ struct Action {
 };
 
 struct Context {
-  Context() = default;
+  Context() : strategy_actions_(std::make_shared<WorkQueue<Action>>()) {}
   explicit Context(const boost::property_tree::ptree& conf)
       : conf_(conf), strategy_actions_(std::make_shared<WorkQueue<Action>>()) {}
 
@@ -26,6 +27,13 @@ struct Context {
     double balance_{};
 
     void reset() { balance_ = 0.0; }
+
+    [[nodiscard]] std::string dump() const {
+      std::stringstream ss;
+      ss << "UserData:\n"
+         << "  balance: " << balance_ << "\n";
+      return ss.str();
+    }
   } user_state_;
 
   struct BinanceData {
@@ -35,12 +43,24 @@ struct Context {
     double high_price_{};
     double low_price_{};
     uint count_{};
-    std::string raw_content_;
+    nlohmann::json json_content_{};
 
     void reset() {
       last_price_ = bid_prices_ = high_price_ = low_price_ = 0.0;
       count_ = 0;
-      raw_content_ = "";
+      json_content_ = {};
+    }
+
+    [[nodiscard]] std::string dump() const {
+      std::stringstream ss;
+      ss << "BinanceData:\n"
+         << "  timestamp: " << timestamp_.time_since_epoch().count() << "\n"
+         << "  last_price: " << last_price_ << "\n"
+         << "  bid_price: " << bid_prices_ << "\n"
+         << "  high_price: " << high_price_ << "\n"
+         << "  low_price: " << low_price_ << "\n"
+         << "  count: " << count_ << "\n";
+      return ss.str();
     }
   } binance_data_;
 
@@ -49,15 +69,7 @@ struct Context {
 
   [[nodiscard]] std::string dump() const {
     std::stringstream ss;
-    ss << "UserData:\n"
-       << "  balance: " << user_state_.balance_ << "\n"
-       << "BinanceData:\n"
-       << "  timestamp: " << binance_data_.timestamp_.time_since_epoch().count() << "\n"
-       << "  last_price: " << binance_data_.last_price_ << "\n"
-       << "  bid_price: " << binance_data_.bid_prices_ << "\n"
-       << "  high_price: " << binance_data_.high_price_ << "\n"
-       << "  low_price: " << binance_data_.low_price_ << "\n"
-       << "  count: " << binance_data_.count_ << "\n";
+    ss << user_state_.dump() << binance_data_.dump();
     return ss.str();
   }
 

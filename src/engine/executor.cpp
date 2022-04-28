@@ -54,11 +54,18 @@ Executor<T>::~Executor() {
 
 template <typename T>
 void Executor<T>::run() {
+  static std::string module_names[4] = {"fetcher", "filter", "strategyer", "tailer"};
+
   std::unordered_set<std::shared_ptr<std::future<void>>> ft;
   for (int i = 0; i < 4; i++) {
+    std::cout << '[' << module_names[i] << "]:\n";
+    auto start = std::chrono::system_clock::now();
     for (auto& module_name : g_[i]) {
       taskflow_[module_name]->exec(ctx_);
     }
+    auto elapsed = std::chrono::system_clock::now() - start;
+    std::cout << "ok. ... elapsed "
+              << std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() << " ms\n" << std::endl;
     //    for (auto& module_name : g_[i]) {
     //      auto job = std::make_shared<std::future<void>>(
     //          thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); }));

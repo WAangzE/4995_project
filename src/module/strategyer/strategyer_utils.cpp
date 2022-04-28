@@ -38,4 +38,10 @@ double getSellPrice(double currentOwn, double currentPrice, double averagePrice)
   return (1 + weighted * (entropy - 0.5)) * currentPrice;
 }
 
+void fake_sleep() {
+  static std::default_random_engine generator;
+  static std::uniform_int_distribution<int> distribution(30,50);
+  std::this_thread::sleep_for(std::chrono::milliseconds(distribution(generator)));
+}
+
 }  // namespace strategyer_utils

@@ -2,8 +2,8 @@
 
 namespace burglar {
 
-ServiceModule::ServiceModule() { std::cout << "ServiceModule()" << std::endl; }
+ServiceModule::ServiceModule() {}
 
-ServiceModule::~ServiceModule() { std::cout << "~ServiceModule() \n"; }
+ServiceModule::~ServiceModule() {}
 
 }  // namespace burglar
