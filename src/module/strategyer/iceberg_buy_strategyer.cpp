@@ -29,12 +29,12 @@ void IcebergBuyStrategyer::exec(std::shared_ptr<Context> ctx) {
     op = Action::Op::buy;
     unit = strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice);
     price = strategyer_utils::getBuyPrice(currentOwn, currentPrice, averagePrice);
-    std::cout << "Buy " << unit << " Units with Price " << price << "\n";
+    std::cout << "IcebergBuyStrategyer: Buy " << unit << " Units with Price " << price << "\n";
   } else {
     op = Action::Op::sell;
     unit = strategyer_utils::getAmount(currentOwn, currentPrice, averagePrice);
     price = strategyer_utils::getSellPrice(currentOwn, currentPrice, averagePrice);
-    std::cout << "Sell " << unit << " Units with Price " << price << "\n";
+    std::cout << "IcebergBuyStrategyer: Sell " << unit << " Units with Price " << price << "\n";
   }
 
   Action action;

@@ -3,6 +3,7 @@
 #include <future>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 #include "utils/work_queue.h"
 

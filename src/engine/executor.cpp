@@ -15,6 +15,7 @@ Executor<T>::Executor(boost::property_tree::ptree& conf) {
   ctx_ = std::make_shared<Context>(conf);
   int thread_pool_num = conf.get_child("thread_pool_num").get_value<int>();
   thread_pool_ = std::make_shared<ThreadPoolManager>(thread_pool_num);
+  thread_pool_->init();
   auto flow = conf.get_child("flow");
   for (auto it = flow.begin(); it != flow.end(); it++) {
     auto module_name = it->second.get_value<std::string>();
@@ -60,21 +61,25 @@ void Executor<T>::run() {
   for (int i = 0; i < 4; i++) {
     std::cout << '[' << module_names[i] << "]:\n";
     auto start = std::chrono::system_clock::now();
-    for (auto& module_name : g_[i]) {
-      taskflow_[module_name]->exec(ctx_);
-    }
-    auto elapsed = std::chrono::system_clock::now() - start;
-    std::cout << "ok. ... elapsed "
-              << std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() << " ms\n" << std::endl;
     //    for (auto& module_name : g_[i]) {
-    //      auto job = std::make_shared<std::future<void>>(
-    //          thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); }));
-    //      ft.insert(job);
+    //      taskflow_[module_name]->exec(ctx_);
     //    }
-    //    for (auto& t : ft) {
-    //      t->wait();
-    //    }
-    //    ft.clear();
+
+    for (auto& module_name : g_[i]) {
+      auto job = std::make_shared<std::future<void>>(
+          thread_pool_->submit([&]() {
+            taskflow_[module_name]->exec(ctx_);
+          }));
+      ft.insert(job);
+    }
+    for (auto& t : ft) {
+      t->wait();
+    }
+    ft.clear();
+    auto elapsed = std::chrono::system_clock::now() - start;
+    std::cout << "ok. ... elapsed " << std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count()
+              << " ms\n"
+              << std::endl;
   }
 }
 

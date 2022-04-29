@@ -13,10 +13,13 @@ struct Action {
   Action() : op_(Op::sell), unit(0.), price(0.) {}
 
   enum class Op { sell, buy };
+
   double unit;
   double price;
   Op op_;
 };
+
+std::string op_str(Action::Op op);
 
 struct Context {
   Context() : strategy_actions_(std::make_shared<WorkQueue<Action>>()) {}

@@ -1,8 +1,9 @@
 #pragma once
 #include "module/module.h"
+#include "module/tailer/tailer.h"
 
 namespace burglar {
-class SimplePriceTailer : public ServiceModule {
+class SimplePriceTailer : public Tailer {
  public:
   SimplePriceTailer() = default;
 

@@ -40,7 +40,7 @@ double getSellPrice(double currentOwn, double currentPrice, double averagePrice)
 
 void fake_sleep() {
   static std::default_random_engine generator;
-  static std::uniform_int_distribution<int> distribution(30,50);
+  static std::uniform_int_distribution<int> distribution(30,35);
   std::this_thread::sleep_for(std::chrono::milliseconds(distribution(generator)));
 }
 
