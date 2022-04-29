@@ -1,3 +1,14 @@
 #include "context.h"
 
-namespace smuggler {}
+namespace burglar {
+std::string op_str(Action::Op op) {
+  switch (op) {
+  case Action::Op::sell:
+    return "sell";
+  case Action::Op::buy:
+    return "buy";
+  default:
+    return "";
+  }
+}
+}  // namespace burglar

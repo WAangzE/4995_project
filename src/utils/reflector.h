@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-namespace smuggler {
+namespace burglar {
 
 class ReflectObject {
  public:
@@ -12,8 +12,8 @@ class ReflectObject {
 
 class ObjectFactory {
  public:
-  ObjectFactory() { std::cout << "ObjectFactory()" << std::endl; }
-  virtual ~ObjectFactory() { std::cout << "~ObjectFactory()" << std::endl; }
+  ObjectFactory() {}
+  virtual ~ObjectFactory() {}
   virtual ReflectObject* newInstance() = 0;
 };
 
@@ -33,8 +33,8 @@ Reflector& reflector();
 #define REFLECT(name)                                                                                 \
   class ObjectFactory_##name : public ObjectFactory {                                                 \
    public:                                                                                            \
-    ObjectFactory_##name() { std::cout << "ObjectFactory_" << #name << "()" << std::endl; }           \
-    virtual ~ObjectFactory_##name() { std::cout << "~ObjectFactory_" << #name << "()" << std::endl; } \
+    ObjectFactory_##name() {}           \
+    virtual ~ObjectFactory_##name() {} \
     ReflectObject* newInstance() { return new name(); }                                               \
   };                                                                                                  \
   class Register_##name {                                                                             \
@@ -48,4 +48,4 @@ T* getNewInstance(const std::string& className) {
   return dynamic_cast<T*>(reflector().getNewInstance(className));
 }
 
-}  // namespace smuggler
+}  // namespace burglar

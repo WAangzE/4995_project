@@ -4,10 +4,10 @@
 #include <boost/property_tree/ptree.hpp>
 #include <iostream>
 
-#include "interface/smuggler_service_handler.h"
+#include "interface/burglar_service_handler.h"
 #include "register.h"
 
-using namespace smuggler;
+using namespace burglar;
 
 DEFINE_string(conf_file, "../conf/service.json", "config file");
 
@@ -17,10 +17,8 @@ int main(int argc, char** argv) {
   boost::property_tree::ptree conf;
   boost::property_tree::read_json(FLAGS_conf_file, conf);
 
-  std::cout << "================= main() start =================" << std::endl;
-
   try {
-    auto handler = std::make_shared<SmugglerServiceHandler>(conf);
+    auto handler = std::make_shared<BurglarServiceHandler>(conf);
     handler->serve();
   } catch (std::exception& ex) {
     std::cout << "exception thrown! reason: " << ex.what() << "\n";

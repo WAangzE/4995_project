@@ -5,12 +5,12 @@
 #include "module/module.h"
 
 namespace burglar {
-class BinanceFetcher : public ServiceModule {
+class BasicStrategyer : public ServiceModule {
  public:
-  BinanceFetcher();
-
-  ~BinanceFetcher() override;
+  BasicStrategyer();
+  ~BasicStrategyer();
   void exec(std::shared_ptr<Context> ctx) override;
+  int init(const boost::property_tree::ptree& p) override;
 
  protected:
   std::string api_;

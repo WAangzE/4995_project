@@ -6,11 +6,11 @@
 #include "engine/executor.h"
 #include "module/module.h"
 
-namespace smuggler {
-class SmugglerServiceHandler {
+namespace burglar {
+class BurglarServiceHandler {
  public:
-  SmugglerServiceHandler(boost::property_tree::ptree& conf);
-  virtual ~SmugglerServiceHandler() = default;
+  BurglarServiceHandler(boost::property_tree::ptree& conf);
+  virtual ~BurglarServiceHandler() = default;
 
   int serve();
 
@@ -19,4 +19,4 @@ class SmugglerServiceHandler {
   std::shared_ptr<Executor<ServiceModule>> exec_;
 };
 
-}  // namespace smuggler
+}  // namespace burglar

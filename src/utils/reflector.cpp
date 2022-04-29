@@ -1,5 +1,5 @@
 #include "utils/reflector.h"
-namespace smuggler {
+namespace burglar {
 
 Reflector::Reflector() {}
 
@@ -33,4 +33,4 @@ Reflector& reflector() {
   static Reflector reflector;
   return reflector;
 }
-}  // namespace smuggler
+}  // namespace burglar

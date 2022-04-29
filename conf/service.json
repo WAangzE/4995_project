@@ -1,10 +1,22 @@
 {
     "name": "smuggler_00001",
     "interface": {
-        "smuggler": {
+        "burglar": {
             "flow": [
-                "BinanceFetcher"
-            ]
+                "SimpleBinanceFetcher",
+                "SimplePriceFilter",
+                "IcebergBuyStrategyer",
+                "BillionaireStrategyer",
+                "SimplePriceTailer"
+            ],
+            "dependency": {
+                "fetcher":["SimpleBinanceFetcher"],
+                "filter":["SimplePriceFilter"],
+                "strategy":["IcebergBuyStrategyer","BillionaireStrategyer"],
+                "tailer":["SimplePriceTailer"]
+            },
+            "thread_pool_num": 20,
+            "fetch_interval": 5
         }
     }
 }
