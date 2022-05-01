@@ -69,7 +69,7 @@ Dependency is field where we execute the parallelism. For each stage, you can de
 
 ## Build Your Own Modules
 
-Except for using our existing modules, our framework allows a good modularity by letting users easily build their own module and insert into our framework. For example, if you wish to design your own strategy, implement a target class inside \textit{src/module/strategyer/} and inherit the base class as follows:
+Except for using our existing modules, our framework allows a good modularity by letting users easily build their own module and insert into our framework. For example, if you wish to design your own strategy, implement a target class inside `src/module/strategyer/` and inherit the base class as follows:
 ```C++
 class BillionaireStrategyer : public BasicStrategyer {
 public:
@@ -79,7 +79,7 @@ public:
 }
 ```
 
-At the very top of the \textbf{BasicStrategyer} is our reflector object, which will transfer the string you write in json into a real module class. After implementing the class you need to register it in the `src/register.h` like follows:
+At the very top of the `BasicStrategyer` is our reflector object, which will transfer the string you write in json into a real module class. After implementing the class you need to register it in the `src/register.h` like follows:
 ```C++
 #include "module/strategyer/billionaire_strategyer.h"
 REFLECT(BillionaireStrategyer);
@@ -88,7 +88,7 @@ Then you are free to configure your own module strategy inside the json file and
 
 ## Test Your Module
 
-We utilize Google Test Framework to do functional test for your own modules, the test directory is under \textit{test/module/}. You will be able to implement your own test part here. For instance, to test the `IcebergStrategyer`
+We utilize Google Test Framework to do functional test for your own modules, the test directory is under `test/module/`. You will be able to implement your own test part here. For instance, to test the `IcebergStrategyer`
 ```C++
 TEST(IcebergStrategyer, basic) {
   try {
