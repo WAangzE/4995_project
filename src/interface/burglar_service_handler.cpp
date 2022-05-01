@@ -21,7 +21,8 @@ int BurglarServiceHandler::serve() {
     exec_->run();
     auto elapsed = std::chrono::system_clock::now() - start;
     std::cout << "a complete run takes "
-              << std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() << " ms\n" << std::endl;
+              << std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count() << " ms\n"
+              << std::endl;
     sleep(5);
   }
   return -1;

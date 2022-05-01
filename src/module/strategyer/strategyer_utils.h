@@ -1,7 +1,7 @@
 #pragma once
+#include <chrono>
 #include <iostream>
 #include <random>
-#include <chrono>
 #include <thread>
 
 namespace strategyer_utils {

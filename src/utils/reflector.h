@@ -30,17 +30,17 @@ class Reflector {
 
 Reflector& reflector();
 
-#define REFLECT(name)                                                                                 \
-  class ObjectFactory_##name : public ObjectFactory {                                                 \
-   public:                                                                                            \
-    ObjectFactory_##name() {}           \
-    virtual ~ObjectFactory_##name() {} \
-    ReflectObject* newInstance() { return new name(); }                                               \
-  };                                                                                                  \
-  class Register_##name {                                                                             \
-   public:                                                                                            \
-    Register_##name() { reflector().registerFactory(#name, new ObjectFactory_##name()); }             \
-  };                                                                                                  \
+#define REFLECT(name)                                                                     \
+  class ObjectFactory_##name : public ObjectFactory {                                     \
+   public:                                                                                \
+    ObjectFactory_##name() {}                                                             \
+    virtual ~ObjectFactory_##name() {}                                                    \
+    ReflectObject* newInstance() { return new name(); }                                   \
+  };                                                                                      \
+  class Register_##name {                                                                 \
+   public:                                                                                \
+    Register_##name() { reflector().registerFactory(#name, new ObjectFactory_##name()); } \
+  };                                                                                      \
   Register_##name register_##name
 
 template <typename T>

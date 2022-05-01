@@ -67,9 +67,7 @@ void Executor<T>::run() {
 
     for (auto& module_name : g_[i]) {
       auto job = std::make_shared<std::future<void>>(
-          thread_pool_->submit([&]() {
-            taskflow_[module_name]->exec(ctx_);
-          }));
+          thread_pool_->submit([&]() { taskflow_[module_name]->exec(ctx_); }));
       ft.insert(job);
     }
     for (auto& t : ft) {

@@ -4,8 +4,8 @@
 #include <sstream>
 #include <string>
 
-#include "utils/work_queue.h"
 #include "third_party/json.hpp"
+#include "utils/work_queue.h"
 
 namespace burglar {
 

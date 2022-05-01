@@ -1,9 +1,9 @@
 #pragma once
 #include <functional>
 #include <future>
+#include <iostream>
 #include <thread>
 #include <vector>
-#include <iostream>
 
 #include "utils/work_queue.h"
 
